@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angel David Soriano · Ingeniero de Infraestructura TI</title>
+<meta name="description" content="Ingeniero de Infraestructura TI: Linux, VMware vCenter, Docker, Kubernetes / K3s, SQL, Nginx y DevOps.">
+<meta property="og:title" content="Angel David Soriano · Ingeniero de Infraestructura TI">
+<meta property="og:description" content="Más de 8 años en soporte, sistemas e infraestructura TI. Linux · VMware · Docker · Kubernetes · DevOps.">
+<meta property="og:type" content="profile">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface-2: #1c232d;
+    --border: #2a3340;
+    --text: #e6edf3;
+    --muted: #8b98a8;
+    --accent: #3fb6a8;
+    --accent-soft: rgba(63, 182, 168, .14);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5f7f9;
+      --surface: #ffffff;
+      --surface-2: #eef2f5;
+      --border: #dde3ea;
+      --text: #17202b;
+      --muted: #5b6876;
+      --accent: #1f8f83;
+      --accent-soft: rgba(31, 143, 131, .10);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 64px; }
+
+  /* Encabezado */
+  .hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+  }
+  .avatar {
+    width: 104px; height: 104px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 38px; font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 2px solid var(--accent);
+  }
+  .hero h1 { font-size: 28px; line-height: 1.2; }
+  .badge {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .bio { margin-top: 10px; color: var(--muted); max-width: 60ch; }
+  .meta { margin-top: 10px; font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font: inherit; font-size: 14px; font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text);
+  }
+  .btn:hover { border-color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* Estadísticas */
+  .stats {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+  .stat strong { display: block; font-size: 26px; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  /* Secciones */
+  section {
+    margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+  }
+  section h2 { font-size: 19px; margin-bottom: 16px; }
+  .sub { color: var(--muted); font-size: 14px; }
+
+  /* Experiencia */
+  .timeline { list-style: none; border-left: 2px solid var(--border); padding-left: 20px; }
+  .timeline > li { position: relative; padding-bottom: 22px; }
+  .timeline > li:last-child { padding-bottom: 0; }
+  .timeline > li::before {
+    content: "";
+    position: absolute; left: -27px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--accent);
+  }
+  .timeline h3 { font-size: 16px; }
+  .role { margin-top: 4px; font-size: 15px; }
+  .role b { font-weight: 600; }
+  .timeline ul { margin: 8px 0 0 18px; color: var(--muted); font-size: 14px; }
+  .timeline ul li { margin-top: 3px; }
+
+  /* Habilidades */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+  }
+
+  /* Áreas de aprendizaje */
+  .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .area {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--surface-2);
+  }
+  .area .count { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .area.main { outline: 2px solid var(--accent); }
+
+  /* Cursos */
+  .courses { list-style: none; }
+  .courses li {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .courses li:last-child { border-bottom: none; }
+  .courses .date { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .courses li.hidden { display: none; }
+  .more { margin-top: 12px; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .two section { margin-top: 0; }
+  .plain { list-style: none; }
+  .plain li { padding: 6px 0; }
+
+  footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: var(--text); color: var(--bg);
+    padding: 10px 18px; border-radius: 10px; font-size: 14px;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .avatar { margin: 0 auto; }
+    .meta, .actions { justify-content: center; }
+    .bio { margin-left: auto; margin-right: auto; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .two { grid-template-columns: 1fr; }
+    section { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- Encabezado -->
+  <header class="hero">
+    <div class="avatar" aria-hidden="true">AD</div>
+    <div>
+      <h1>Angel David Soriano</h1>
+      <span class="badge">Ingeniero de Infraestructura TI</span>
+      <p class="bio">
+        Ingeniero de Infraestructura TI con experiencia práctica en administración, implementación
+        y optimización de plataformas tecnológicas. Más de 8 años en soporte, análisis de sistemas
+        e infraestructura.
+      </p>
+      <div class="meta">
+        <span>📍 Ciudad de México, México</span>
+        <span>🎓 Ingeniería de Sistemas · Pontificia Universidad Javeriana</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="mailto:davidsoriano21@gmail.com">✉️ Contactar</a>
+        <a class="btn" href="https://www.linkedin.com/in/david-sorianor" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="btn" href="https://platzi.com/p/asoriano118/" target="_blank" rel="noopener">📚 Perfil de aprendizaje</a>
+        <button class="btn" id="share" type="button">🔗 Compartir perfil</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Estadísticas -->
+  <div class="stats">
+    <div class="stat"><strong>8+</strong><span>años de experiencia</span></div>
+    <div class="stat"><strong>7</strong><span>cursos aprobados</span></div>
+    <div class="stat"><strong>3</strong><span>certificaciones</span></div>
+    <div class="stat"><strong>1,856</strong><span>puntos de aprendizaje</span></div>
+  </div>
+
+  <!-- Experiencia -->
+  <section>
+    <h2>Experiencia profesional</h2>
+    <ul class="timeline">
+      <li>
+        <h3>Heinsohn <span class="sub">· Bogotá, Colombia (remoto)</span></h3>
+        <p class="role"><b>Ingeniero de Infraestructura</b> <span class="sub">· oct. 2024 – nov. 2026</span></p>
+        <p class="role"><b>Analista de Infraestructura</b> <span class="sub">· oct. 2023 – oct. 2024</span></p>
+        <ul>
+          <li>Administración de servidores Linux y plataformas virtualizadas con VMware vCenter.</li>
+          <li>Despliegue y operación de contenedores con Docker y clústeres Kubernetes / K3s.</li>
+          <li>Administración de SQL Server: respaldos (.bak), restauraciones y transferencia segura por SFTP/VPN.</li>
+          <li>Configuración de servicios web y proxy inverso con Nginx.</li>
+          <li>Atención de tickets de infraestructura y automatización de tareas operativas recurrentes.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Desigual <span class="sub">· Colombia</span></h3>
+        <p class="role"><b>Analista de Sistemas de TI</b> <span class="sub">· feb. 2021 – feb. 2023</span></p>
+        <ul>
+          <li>Soporte y administración de los sistemas de TI de la operación.</li>
+          <li>Gestión de incidentes y solicitudes de usuarios.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Dunkin' <span class="sub">· Colombia</span></h3>
+        <p class="role"><b>Analista de Sistemas de TI</b> <span class="sub">· dic. 2019 – jul. 2020</span></p>
+        <ul>
+          <li>Soporte a sistemas, equipos y aplicaciones de tiendas y oficinas.</li>
+          <li>Atención de incidentes y mantenimiento de la infraestructura de TI.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>RUNT <span class="sub">· Colombia</span></h3>
+        <p class="role"><b>Analista de Soporte TI</b> <span class="sub">· mar. 2014 – jun. 2017</span></p>
+        <ul>
+          <li>Soporte técnico a usuarios e incidentes de primer y segundo nivel.</li>
+          <li>Mantenimiento de equipos y apoyo en la operación de los sistemas de la plataforma.</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Habilidades -->
+  <section>
+    <h2>Habilidades técnicas</h2>
+    <div class="chips">
+      <span class="chip">Linux</span>
+      <span class="chip">VMware vCenter</span>
+      <span class="chip">Docker</span>
+      <span class="chip">Kubernetes / K3s</span>
+      <span class="chip">SQL Server</span>
+      <span class="chip">Nginx</span>
+      <span class="chip">SFTP / VPN</span>
+      <span class="chip">DevOps</span>
+      <span class="chip">IT Operations</span>
+      <span class="chip">Infraestructura cloud</span>
+      <span class="chip">Claude AI</span>
+    </div>
+  </section>
+
+  <!-- Áreas de aprendizaje -->
+  <section>
+    <h2>Áreas de aprendizaje</h2>
+    <p class="sub" style="margin-bottom:14px">Interés principal: <b>Data Science</b>. Un curso puede contar para varias áreas.</p>
+    <div class="areas">
+      <div class="area main"><span>Data Science<br><span class="sub">último curso: nov. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Inglés<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Liderazgo y habilidades blandas<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Negocios<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Recursos Humanos<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
+    </div>
+  </section>
+
+  <!-- Cursos aprobados -->
+  <section>
+    <h2>Cursos aprobados</h2>
+    <ul class="courses" id="courses">
+      <li><span>Curso de Kubernetes</span><span class="date">nov. 2026</span></li>
+      <li><span>Curso de Claude AI</span><span class="date">nov. 2026</span></li>
+      <li><span>Curso de Inglés Básico A1: Verbo To Be</span><span class="date">feb. 2026</span></li>
+      <li><span>Curso de Inglés Básico A1 para Principiantes</span><span class="date">feb. 2026</span></li>
+      <li class="hidden"><span>Introducción a la Inteligencia Artificial</span><span class="date">feb. 2026</span></li>
+      <li class="hidden"><span>Curso de Comunicación Asertiva</span><span class="date">feb. 2026</span></li>
+      <!-- Agrega aquí tu 7.º curso:
+      <li class="hidden"><span>Nombre del curso</span><span class="date">mes año</span></li> -->
+    </ul>
+    <button class="btn more" id="more" type="button">Ver más cursos</button>
+  </section>
+
+  <!-- Certificaciones e idiomas -->
+  <div class="two" style="margin-top:20px">
+    <section>
+      <h2>Certificaciones</h2>
+      <ul class="plain">
+        <li>✅ K3s (Kubernetes ligero)</li>
+        <li>✅ Microsoft</li>
+        <li>✅ Claude (Anthropic)</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Idiomas</h2>
+      <ul class="plain">
+        <li>Español: <span class="sub">nativo</span></li>
+        <li>Inglés: <span class="sub">básico (en formación A1)</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>© <span id="year"></span> Angel David Soriano</footer>
+</main>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mostrar u ocultar los cursos extra
+  const moreBtn = document.getElementById('more');
+  const hidden = [...document.querySelectorAll('#courses li.hidden')];
+  moreBtn.textContent = `Ver más cursos (${hidden.length})`;
+  let open = false;
+  moreBtn.addEventListener('click', () => {
+    open = !open;
+    hidden.forEach(li => li.style.display = open ? 'flex' : '');
+    moreBtn.textContent = open ? 'Ver menos' : `Ver más cursos (${hidden.length})`;
+  });
+
+  // Compartir perfil
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+  document.getElementById('share').addEventListener('click', async () => {
+    const data = { title: document.title, url: location.href };
+    if (navigator.share) {
+      try { await navigator.share(data); } catch (e) {}
+    } else {
+      try { await navigator.clipboard.writeText(location.href); toast('Enlace copiado'); }
+      catch (e) { toast('No se pudo copiar el enlace'); }
+    }
+  });
+</script>
+</body>
+</html>
