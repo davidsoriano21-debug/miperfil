@@ -93,7 +93,7 @@
   .stats {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
   .stat {
@@ -164,6 +164,35 @@
   .courses li:last-child { border-bottom: none; }
   .courses .date { color: var(--muted); font-size: 14px; white-space: nowrap; }
   .courses li.hidden { display: none; }
+  .courses .name { display: flex; flex-direction: column; gap: 2px; }
+  .courses .cert { font-size: 13px; font-weight: 600; }
+  .courses .right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+
+  /* Contacto */
+  .contact {
+    margin-top: 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 6px 14px;
+  }
+  .contact-row {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;
+    padding: 8px 0;
+  }
+  .contact-row + .contact-row { border-top: 1px solid var(--border); }
+  .contact-actions { display: flex; gap: 6px; }
+  .btn.small { padding: 4px 10px; font-size: 13px; }
+
+  /* Acerca de mí */
+  .about-text p + p { margin-top: 12px; }
+  .about-text { position: relative; overflow: hidden; max-height: 7.8em; transition: max-height .35s ease; }
+  .about-text::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3em;
+    background: linear-gradient(to bottom, transparent, var(--surface));
+  }
+  .about-text.open { max-height: 60em; }
+  .about-text.open::after { display: none; }
   .more { margin-top: 12px; }
 
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -186,7 +215,8 @@
     .avatar { margin: 0 auto; }
     .meta, .actions { justify-content: center; }
     .bio { margin-left: auto; margin-right: auto; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .stat strong { font-size: 22px; }
     .two { grid-template-columns: 1fr; }
     section { padding: 20px; }
   }
@@ -211,10 +241,26 @@
         <span>🎓 Ingeniería de Sistemas · Pontificia Universidad Javeriana</span>
       </div>
       <div class="actions">
-        <a class="btn primary" href="mailto:davidsoriano21@gmail.com">✉️ Contactar</a>
+        <button class="btn primary" id="contact-btn" type="button" aria-expanded="false" aria-controls="contact">✉️ Contactar</button>
         <a class="btn" href="https://www.linkedin.com/in/david-sorianor" target="_blank" rel="noopener">in LinkedIn</a>
         <a class="btn" href="https://platzi.com/p/asoriano118/" target="_blank" rel="noopener">📚 Perfil de aprendizaje</a>
         <button class="btn" id="share" type="button">🔗 Compartir perfil</button>
+      </div>
+      <div class="contact" id="contact" hidden>
+        <div class="contact-row">
+          <span>📱 <a href="tel:+525548673675">+52 55 4867 3675</a></span>
+          <span class="contact-actions">
+            <a class="btn small" href="https://wa.me/525548673675" target="_blank" rel="noopener">WhatsApp</a>
+            <button class="btn small" type="button" data-copy="+52 55 4867 3675">Copiar</button>
+          </span>
+        </div>
+        <div class="contact-row">
+          <span>✉️ <a href="mailto:davidsoriano21@gmail.com">davidsoriano21@gmail.com</a></span>
+          <span class="contact-actions">
+            <a class="btn small" href="mailto:davidsoriano21@gmail.com">Escribir</a>
+            <button class="btn small" type="button" data-copy="davidsoriano21@gmail.com">Copiar</button>
+          </span>
+        </div>
       </div>
     </div>
   </header>
@@ -222,10 +268,20 @@
   <!-- Estadísticas -->
   <div class="stats">
     <div class="stat"><strong>8+</strong><span>años de experiencia</span></div>
-    <div class="stat"><strong>7</strong><span>cursos aprobados</span></div>
+    <div class="stat"><strong>8</strong><span>cursos aprobados</span></div>
     <div class="stat"><strong>3</strong><span>certificaciones</span></div>
-    <div class="stat"><strong>1,856</strong><span>puntos de aprendizaje</span></div>
   </div>
+
+  <!-- Acerca de mí -->
+  <section>
+    <h2>Acerca de mí</h2>
+    <div class="about-text" id="about">
+      <p>Ingeniero de Infraestructura TI con experiencia práctica en administración, implementación, operación y optimización de plataformas tecnológicas en entornos empresariales. Especializado en administración de sistemas Linux y Windows Server, virtualización con VMware vCenter y ESXi, tecnologías de contenedores Docker y Kubernetes (K3s), gestión de servicios web mediante Nginx y administración de bases de datos SQL Server y Oracle.</p>
+      <p>Cuento con experiencia en automatización y administración de infraestructura mediante Bash, Python y Ansible, gestión de repositorios y procesos de despliegue con Git, GitLab, Azure DevOps y ArgoCD, así como conocimientos operativos en entornos de nube pública AWS, Microsoft Azure y Google Cloud Platform (GCP). Manejo herramientas de monitoreo y visualización como Grafana, administración de certificados SSL/TLS, configuración de seguridad perimetral, procesos de backup y restauración.</p>
+      <p>Orientado a la disponibilidad, estabilidad, rendimiento y continuidad de los servicios tecnológicos, con experiencia en atención de incidentes críticos de nivel 3, análisis de causa raíz, gestión de SLA y KPI y aplicación de buenas prácticas ITIL. Complemento mi perfil con documentación técnica, estandarización de procedimientos, transferencia de conocimiento y mejora continua, aportando soluciones que optimizan la operación, fortalecen la infraestructura y contribuyen a la evolución tecnológica de las organizaciones.</p>
+    </div>
+    <button class="btn more" id="about-btn" type="button" aria-expanded="false" aria-controls="about">Leer más</button>
+  </section>
 
   <!-- Experiencia -->
   <section>
@@ -291,13 +347,13 @@
   <!-- Áreas de aprendizaje -->
   <section>
     <h2>Áreas de aprendizaje</h2>
-    <p class="sub" style="margin-bottom:14px">Interés principal: <b>Data Science</b>. Un curso puede contar para varias áreas.</p>
+    <p class="sub" style="margin-bottom:14px">Un curso puede contar para varias áreas.</p>
     <div class="areas">
-      <div class="area main"><span>Data Science<br><span class="sub">último curso: nov. 2026</span></span><span class="count">2</span></div>
+      <div class="area main"><span>Cloud Computing y DevOps<br><span class="sub">último curso: nov. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Data Science<br><span class="sub">último curso: nov. 2026</span></span><span class="count">2</span></div>
+      <div class="area"><span>Desarrollo Web<br><span class="sub">último curso: nov. 2026</span></span><span class="count">2</span></div>
       <div class="area"><span>Inglés<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
       <div class="area"><span>Liderazgo y habilidades blandas<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
-      <div class="area"><span>Negocios<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
-      <div class="area"><span>Recursos Humanos<br><span class="sub">último curso: feb. 2026</span></span><span class="count">2</span></div>
     </div>
   </section>
 
@@ -305,14 +361,17 @@
   <section>
     <h2>Cursos aprobados</h2>
     <ul class="courses" id="courses">
-      <li><span>Curso de Kubernetes</span><span class="date">nov. 2026</span></li>
-      <li><span>Curso de Claude AI</span><span class="date">nov. 2026</span></li>
-      <li><span>Curso de Inglés Básico A1: Verbo To Be</span><span class="date">feb. 2026</span></li>
-      <li><span>Curso de Inglés Básico A1 para Principiantes</span><span class="date">feb. 2026</span></li>
-      <li class="hidden"><span>Introducción a la Inteligencia Artificial</span><span class="date">feb. 2026</span></li>
-      <li class="hidden"><span>Curso de Comunicación Asertiva</span><span class="date">feb. 2026</span></li>
-      <!-- Agrega aquí tu 7.º curso:
-      <li class="hidden"><span>Nombre del curso</span><span class="date">mes año</span></li> -->
+      <!-- Cada curso: nombre, fecha y enlace al certificado.
+           Para usar tu propio PDF, cambia el href por: certificados/nombre-del-archivo.pdf -->
+      <li><span class="name">Curso de Docker: Fundamentos</span><span class="right"><span class="date">nov. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/8781-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li><span class="name">Curso de Kubernetes</span><span class="right"><span class="date">nov. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/11421-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li><span class="name">Curso de Claude AI</span><span class="right"><span class="date">nov. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/12651-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li><span class="name">Curso de Inglés Básico A1: Verbo To Be</span><span class="right"><span class="date">feb. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/11944-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li class="hidden"><span class="name">Curso de Inglés Básico A1 para Principiantes</span><span class="right"><span class="date">feb. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/10629-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li class="hidden"><span class="name">Introducción a la Inteligencia Artificial</span><span class="right"><span class="date">feb. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/curso/11157-course/diploma/detalle/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <li class="hidden"><span class="name">Curso de Comunicación Asertiva</span><span class="right"><span class="date">feb. 2026</span><a class="cert" href="https://platzi.com/p/asoriano118/" target="_blank" rel="noopener">Ver certificado →</a></span></li>
+      <!-- 8.º curso: reemplaza el nombre, la fecha y el enlace, y quita las marcas de comentario
+      <li class="hidden"><span class="name">Nombre del curso</span><span class="right"><span class="date">mes año</span><a class="cert" href="ENLACE-DEL-CERTIFICADO" target="_blank" rel="noopener">Ver certificado →</a></span></li> -->
     </ul>
     <button class="btn more" id="more" type="button">Ver más cursos</button>
   </section>
@@ -354,6 +413,27 @@
     hidden.forEach(li => li.style.display = open ? 'flex' : '');
     moreBtn.textContent = open ? 'Ver menos' : `Ver más cursos (${hidden.length})`;
   });
+
+  // Acerca de mí: leer más / leer menos
+  const about = document.getElementById('about');
+  const aboutBtn = document.getElementById('about-btn');
+  aboutBtn.addEventListener('click', () => {
+    const isOpen = about.classList.toggle('open');
+    aboutBtn.textContent = isOpen ? 'Leer menos' : 'Leer más';
+    aboutBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Contacto: mostrar / ocultar panel y copiar datos
+  const contact = document.getElementById('contact');
+  const contactBtn = document.getElementById('contact-btn');
+  contactBtn.addEventListener('click', () => {
+    contact.hidden = !contact.hidden;
+    contactBtn.setAttribute('aria-expanded', !contact.hidden);
+  });
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); toast('Copiado: ' + b.dataset.copy); }
+    catch (e) { toast('No se pudo copiar'); }
+  }));
 
   // Compartir perfil
   function toast(msg) {
